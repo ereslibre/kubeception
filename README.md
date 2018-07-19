@@ -38,29 +38,29 @@ docker run -v /usr/bin/kubectl:/usr/bin/kubectl \
 In less than a minute, our node has become a Kubernetes master:
 
 ```
- INFO 2018-07-18T01:23:46Z: kubeception::etcd: bootstrapping
- INFO 2018-07-18T01:23:46Z: kubeception::k8s: bootstrapping
- INFO 2018-07-18T01:23:47Z: kubeception::k8s: deploying control plane
- INFO 2018-07-18T01:23:47Z: kubeception::k8s: applying control plane manifests
- INFO 2018-07-18T01:23:47Z: kubeception::k8s: waiting for bootstrap apiserver
- INFO 2018-07-18T01:24:04Z: kubeception::k8s: configuring local kubelet
- INFO 2018-07-18T01:24:04Z: kubeception::k8s: waiting for bootstrap apiserver
- INFO 2018-07-18T01:24:04Z: kubeception::k8s: pointing the kubelet to the boostrap apiserver
- INFO 2018-07-18T01:24:04Z: kubeception::k8s: waiting for kubelet to be registered
- INFO 2018-07-18T01:24:05Z: kubeception::k8s: labeling node and setting taints
- INFO 2018-07-18T01:24:05Z: kubeception::k8s: waiting for bootstrap apiserver
- INFO 2018-07-18T01:24:05Z: kubeception::k8s: performing stability check for cluster apiserver
- INFO 2018-07-18T01:24:05Z: kubeception::k8s: waiting for cluster apiserver
- INFO 2018-07-18T01:24:25Z: kubeception::k8s: waiting for cluster apiserver
- INFO 2018-07-18T01:24:26Z: kubeception::k8s: waiting for cluster apiserver
- INFO 2018-07-18T01:24:27Z: kubeception::k8s: waiting for cluster apiserver
- INFO 2018-07-18T01:24:28Z: kubeception::k8s: waiting for cluster apiserver
- INFO 2018-07-18T01:24:29Z: kubeception::k8s: waiting for cluster apiserver
- INFO 2018-07-18T01:24:30Z: kubeception::k8s: waiting for cluster apiserver
- INFO 2018-07-18T01:24:31Z: kubeception::k8s: waiting for cluster apiserver
- INFO 2018-07-18T01:24:32Z: kubeception::k8s: waiting for cluster apiserver
- INFO 2018-07-18T01:24:33Z: kubeception::k8s: removing static manifests
- INFO 2018-07-18T01:24:33Z: kubeception::k8s: pointing the kubelet to the cluster apiserver
+ INFO 2018-07-19T10:24:20Z: kubeception::etcd: bootstrapping
+ INFO 2018-07-19T10:24:21Z: kubeception::k8s: bootstrapping
+ INFO 2018-07-19T10:24:21Z: kubeception::k8s: deploying control plane
+ INFO 2018-07-19T10:24:21Z: kubeception::k8s: applying control plane manifests
+ INFO 2018-07-19T10:24:21Z: kubeception::k8s: waiting for bootstrap apiserver
+ INFO 2018-07-19T10:24:39Z: kubeception::k8s: configuring local kubelet
+ INFO 2018-07-19T10:24:39Z: kubeception::k8s: waiting for bootstrap apiserver
+ INFO 2018-07-19T10:24:39Z: kubeception::k8s: pointing the kubelet to the boostrap apiserver
+ INFO 2018-07-19T10:24:39Z: kubeception::k8s: waiting for kubelet to be registered
+ INFO 2018-07-19T10:24:40Z: kubeception::k8s: labeling node and setting taints
+ INFO 2018-07-19T10:24:40Z: kubeception::k8s: waiting for bootstrap apiserver
+ INFO 2018-07-19T10:24:40Z: kubeception::k8s: performing stability check for cluster apiserver
+ INFO 2018-07-19T10:24:40Z: kubeception::k8s: waiting for cluster apiserver
+ INFO 2018-07-19T10:24:57Z: kubeception::k8s: waiting for cluster apiserver
+ INFO 2018-07-19T10:24:58Z: kubeception::k8s: waiting for cluster apiserver
+ INFO 2018-07-19T10:24:59Z: kubeception::k8s: waiting for cluster apiserver
+ INFO 2018-07-19T10:25:00Z: kubeception::k8s: waiting for cluster apiserver
+ INFO 2018-07-19T10:25:01Z: kubeception::k8s: waiting for cluster apiserver
+ INFO 2018-07-19T10:25:02Z: kubeception::k8s: waiting for cluster apiserver
+ INFO 2018-07-19T10:25:03Z: kubeception::k8s: waiting for cluster apiserver
+ INFO 2018-07-19T10:25:04Z: kubeception::k8s: waiting for cluster apiserver
+ INFO 2018-07-19T10:25:05Z: kubeception::k8s: pointing the kubelet to the cluster apiserver
+ INFO 2018-07-19T10:25:05Z: kubeception::k8s: removing static manifests
 ```
 
 You can check that everything is running as expected, and that the node is now `Ready`:
