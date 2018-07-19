@@ -1,0 +1,25 @@
+[bootstrap]
+manifests_path = "/etc/kubernetes/manifests"
+
+[certificates]
+ca_path = "/etc/ca-certificates"
+
+[secrets]
+path = "/etc/kubernetes/bootstrap-secrets"
+
+[kubelet]
+config_file = "/etc/kubernetes/kubelet"
+
+[etcd]
+config_file = "/etc/sysconfig/etcd"
+config_path = "/etc/etcd"
+
+[net]
+cluster_cidr = "10.2.0.0/16"
+service_cluster_ip_range = "10.3.0.0/24"
+apiserver_cluster_ip = "10.3.0.1"
+dns_cluster_ip = "10.3.0.10"
+
+[kubeception]
+image = "ereslibre/kubeception:latest"
+nodeport = "30000"

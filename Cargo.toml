@@ -1,0 +1,20 @@
+[package]
+name = "kubeception"
+version = "0.1.0"
+authors = ["Rafael Fernández López <ereslibre@ereslibre.es>"]
+
+[dependencies]
+clap = "2.32.0"
+dbus = "0.6.2"
+handlebars = "1.0.0-beta.4"
+reqwest = "0.8.6"
+openssl = "0.10.10"
+serde = "1.0.70"
+serde_derive = "1.0.70"
+serde_json = "1.0"
+toml = "0.4.6"
+base64 = "0.9.2"
+uuid = { version = "0.6.5", features = ["v4"] }
+log = "0.4.3"
+env_logger = "0.5.10"
+rouille = "2.1.0"
