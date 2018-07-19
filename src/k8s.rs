@@ -555,10 +555,11 @@ impl<'a> K8s<'a> {
         self.wait_for_apiserver_stable(
             Some(&ApiserverType::Cluster),
         )?;
-        self.remove_static_manifests()?;
 
         info!("pointing the kubelet to the cluster apiserver");
         self.write_kubelet_config(KubeconfigType::Cluster)?;
+
+        self.remove_static_manifests()?;
 
         Ok(self)
     }

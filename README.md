@@ -107,8 +107,7 @@ perform the following operations:
   * Write the `apiserver`, `replication-controller` and `scheduler` manifests in the pod manifests path of the kubelet.
     * `hostNetwork` all the way.
   * Write the `kubeconfig` for the bootstrap control plane and the "final" control plane.
-  * Write the `kubelet` config pointing to the bootstrap control plane and restart the `kubelet` service.
-  * Restart the `kubelet` service.
+  * Write the `kubelet` config pointing to the bootstrap control plane.
 
 * Start and enable the `kubelet` service.
 
@@ -131,8 +130,8 @@ the containers. Note that the bootstrap `apiserver` and the final one can coexis
 * Wait for the `kubelet` to have registered against the `apiserver`.
 * Label the node and create the taints for it (using the `bootstrap` apiserver).
 * Wait for the final `apiserver` to be running in a stable manner (that is; 10 successful checks in a row).
-* Remove the `bootstrap` control plane manifests from the static pod manifest path.
 * Point the `kubelet` to the final cluster.
+* Remove the `bootstrap` control plane manifests from the static pod manifest path.
 
 Starting our own bootstrap control plane has its advantages: we don't really care or depend on the current status of the cluster
 at this moment, as long as `etcd` is healthy and can talk to us.
