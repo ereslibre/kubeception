@@ -255,7 +255,7 @@ impl<'a> K8s<'a> {
                     &self.config.secrets.path,
                     "kube-master",
                     "kube-apiserver",
-                    vec![self.config.net.apiserver_cluster_ip.clone()],
+                    vec![&self.config.net.apiserver_cluster_ip],
                     Key::new("apiserver.key", &self.config.secrets.path),
                     CaCertificate::new(self.config),
                 )

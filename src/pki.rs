@@ -4,7 +4,7 @@ use openssl::pkey::PKey;
 use std;
 use std::fmt;
 use std::fs::File;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::io::prelude::*;
 
 use config::Config;
@@ -25,9 +25,9 @@ pub enum PKIError {
     OpenSSLError,
 }
 
-pub struct Key {
-    name: String,
-    path: PathBuf,
+pub struct Key<'a> {
+    name: &'a str,
+    path: &'a Path,
 }
 
 pub struct CaCertificate<'a> {
@@ -35,12 +35,12 @@ pub struct CaCertificate<'a> {
 }
 
 pub struct Certificate<'a> {
-    name: String,
-    path: PathBuf,
-    o: String,
-    cn: String,
-    extra_ips: Vec<String>,
-    key: Key,
+    name: &'a str,
+    path: &'a Path,
+    o: &'a str,
+    cn: &'a str,
+    extra_ips: Vec<&'a str>,
+    key: Key<'a>,
     ca: CaCertificate<'a>,
 }
 
@@ -74,15 +74,14 @@ impl fmt::Debug for PKIError {
     }
 }
 
-impl Key {
-    pub fn new<T, S>(name: T, path: S) -> Key
+impl<'a> Key<'a> {
+    pub fn new<P: 'a>(name: &'a str, path: &'a P) -> Key<'a>
     where
-        T: Into<String>,
-        S: Into<PathBuf>,
+        P: AsRef<Path>,
     {
         Key {
-            name: name.into(),
-            path: path.into(),
+            name: name,
+            path: path.as_ref(),
         }
     }
 
@@ -154,24 +153,23 @@ impl<'a> CaCertificate<'a> {
 }
 
 impl<'a> Certificate<'a> {
-    pub fn new<T, S>(
-        name: T,
-        path: S,
-        o: T,
-        cn: T,
-        extra_ips: Vec<String>,
-        key: Key,
-        ca: CaCertificate,
-    ) -> Certificate
+    pub fn new<P: 'a>(
+        name: &'a str,
+        path: &'a P,
+        o: &'a str,
+        cn: &'a str,
+        extra_ips: Vec<&'a str>,
+        key: Key<'a>,
+        ca: CaCertificate<'a>,
+    ) -> Certificate<'a>
     where
-        T: Into<String>,
-        S: Into<PathBuf>,
+        P: AsRef<Path>,
     {
         Certificate {
-            name: name.into(),
-            path: path.into(),
-            o: o.into(),
-            cn: cn.into(),
+            name: name,
+            path: path.as_ref(),
+            o: o,
+            cn: cn,
             extra_ips: extra_ips,
             key: key,
             ca: ca,
@@ -194,9 +192,9 @@ impl<'a> Certificate<'a> {
     }
 
     fn create(
-        o: &String,
-        cn: &String,
-        extra_ips: &Vec<String>,
+        o: &str,
+        cn: &str,
+        extra_ips: &Vec<&str>,
         key: &Key,
         ca_cert: Option<&CaCertificate>,
     ) -> Result<X509, PKIError> {
@@ -289,8 +287,8 @@ impl<'a> Certificate<'a> {
         }
         let mut file = File::create(self.cert_path())?;
         let cert = Certificate::create(
-            &self.o,
-            &self.cn,
+            self.o,
+            self.cn,
             &self.extra_ips,
             self.key.present()?,
             Some(self.ca.present()?),

@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::path::PathBuf;
+use std::path::Path;
 use std::io::prelude::*;
 
 use toml;
@@ -61,11 +61,9 @@ pub struct JoinConfig {
 }
 
 impl Config {
-    pub fn from_file<T>(path: T) -> Config
-    where
-        T: Into<PathBuf>,
+    pub fn from_file<P: AsRef<Path>>(path: P) -> Config
     {
-        let mut file = File::open(path.into()).expect("configuration file not found");
+        let mut file = File::open(path).expect("configuration file not found");
         let mut contents = String::new();
         file.read_to_string(&mut contents).expect(
             "could not read configuration file",
